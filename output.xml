@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220328 14:30:13.467" rpa="false" schemaversion="3">
+<suite id="s1" name="TC 001 Login" source="d:\robot\robotgenesis\TC_001_Login.robot">
+<test id="s1-t1" name="AuthTest" line="11">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220328 14:30:13.673" level="INFO">Creating Session using : alias=mysession, url=https://api.dev-genesis.lionparcel.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220328 14:30:13.673" endtime="20220328 14:30:13.673"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=conscgksu</arg>
+<arg>password=Genesis123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220328 14:30:13.675" level="INFO">${body} = {'email': 'conscgksu', 'password': 'Genesis123'}</msg>
+<status status="PASS" starttime="20220328 14:30:13.674" endtime="20220328 14:30:13.676"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220328 14:30:13.678" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20220328 14:30:13.677" endtime="20220328 14:30:13.678"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/horde/v1/auth/login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20220328 14:30:13.678" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20220328 14:30:13.896" level="INFO">POST Request : url=https://api.dev-genesis.lionparcel.com/horde/v1/auth/login 
+ path_url=/horde/v1/auth/login 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '48'} 
+ body={"email": "conscgksu", "password": "Genesis123"} 
+ </msg>
+<msg timestamp="20220328 14:30:13.896" level="INFO">POST Response : url=https://api.dev-genesis.lionparcel.com/horde/v1/auth/login 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=UTF-8', 'Content-Length': '935', 'X-Request-Id': 'GtKmMLnGPpPn0Py8gskpTRUd75oN8axY', 'Date': 'Mon, 28 Mar 2022 07:30:14 GMT', 'vary': 'Origin', 'Access-Control-Allow-Origin': '*', 'X-Kong-Upstream-Latency': '7', 'X-Kong-Proxy-Latency': '1', 'Via': 'kong/2.1.4, 1.1 google', 'Alt-Svc': 'clear'} 
+ body={"success":true,"code":200,"message":"Success Login","data":{"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDg4ODQ2MTQsImlhdCI6MTY0ODQ1MjYxNCwiYWNjb3VudF9pZCI6MzIzMTksImFjY291bnRfbmFtZSI6ImNvbnNjZ2tzdSIsInR5cGUiOiJwYXJ0bmVyIiwicGFydG5lcl90eXBlIjoiY29uc29sZSIsInBhcnRuZXJfaWQiOjQxLCJwYXJ0bmVyX2NvZGUiOiJDT05TNDEiLCJwYXJ0bmVyX25hbWUiOiJQVC4gTGlvbiBFeHByZXNzIiwiY2xpZW50X2lkIjowLCJjbGllbnRfbmFtZSI6IiIsImNsaWVudF9jb2RlIjoiIiwidXNlcm5hbWUiOiJjb25zY2drc3UiLCJzdXBlciI6ZmFsc2UsImFjY291bnRfcm9sZV9uYW1lIjoiYWRtaW5fY29uc29sZSJ9.Iu4DsJ3gxw6DeR8GW_9A5rkoQhXKt1XD0mZ6fgZqXFPraOOxW_4KaZX4TM99xvg1wkGtVdr9wCCKrIO_DpSkYwL3c88AjH3815ZYquwkCyt27_6FPT61_HaQ_gsvObc-pw3ow3gEwBBpiwPXD2Od-pHm8chGlvAltiawcEJzEfksp3EqfvTKr4DrbFAsR0dXptLWQttIEv09kwlLDVixw2d8IlYhuoREhClCZqFp-uDuzaNs-f-_wkNTljC4qlSiwKp-9-w75-yZbLt2Nk8q8YoVm5vCOXRmnbFS7jj8nN0prMb68B86uQgQuEIFIXFRv73WbynzR0kLPM-BS_5vWA","type":"Bearer","expired_at":"2022-04-02T14:30:14+07:00"}}
+ 
+ </msg>
+<msg timestamp="20220328 14:30:13.896" level="INFO">C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.dev-genesis.lionparcel.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20220328 14:30:13.897" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220328 14:30:13.678" endtime="20220328 14:30:13.897"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220328 14:30:13.897" endtime="20220328 14:30:13.899"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220328 14:30:13.899" endtime="20220328 14:30:13.902"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20220328 14:30:13.904" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220328 14:30:13.902" endtime="20220328 14:30:13.904"/>
+</kw>
+<status status="PASS" starttime="20220328 14:30:13.672" endtime="20220328 14:30:13.904"/>
+</test>
+<status status="PASS" starttime="20220328 14:30:13.469" endtime="20220328 14:30:13.906"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="TC 001 Login">TC 001 Login</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220328 14:30:13.678" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+</errors>
+</robot>
